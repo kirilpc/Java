@@ -23,17 +23,29 @@ public class Task17 {
 		boolean zigzag = true;
 		if (inputArr[0] > inputArr[1]) {
 			for (int i = 1;i < inputArr.length -1; i+=2 ) {
-				if (inputArr[i] > inputArr[i-1] || inputArr[i] > inputArr[i+1]) {
+				if (inputArr[i] >= inputArr[i-1] || inputArr[i] >= inputArr[i+1]) {
 					zigzag = false;
 					break;
+				}
+			}
+			//Last element check
+			if (inputArr.length % 2 == 0) {
+				if (inputArr[inputArr.length -1] >= inputArr[inputArr.length -2]) {
+					zigzag = false;
 				}
 			}
 		}
 		else {
 			for (int i = 1;i < inputArr.length -1; i+=2 ) {
-				if (inputArr[i] < inputArr[i-1] || inputArr[i] < inputArr[i+1]) {
+				if (inputArr[i] <= inputArr[i-1] || inputArr[i] <= inputArr[i+1]) {
 					zigzag = false;
 					break;
+				}
+			}
+			//Last element check
+			if (inputArr.length % 2 == 0) {
+				if (inputArr[inputArr.length -1] <= inputArr[inputArr.length -2]) {
+					zigzag = false;
 				}
 			}
 		}
