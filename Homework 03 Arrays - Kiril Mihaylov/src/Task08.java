@@ -20,30 +20,24 @@ public class Task08 {
 			System.out.print("Arr[" + i + "] = ");
 			inputArr[i] = sc.nextInt();
 		}
-		int longNum = 0;
-		int longCount = 0;
-		int tempNum = 0;
-		int tempCount = 0;
-		//Result search
-		for (int i = 0; i < inputArr.length; i++) {
-			if (inputArr[i] == tempNum) {
+		//Result calculation
+		int longNum = inputArr[0];
+		int longCount = 1;
+		int tempNum = inputArr[0];
+		int tempCount = 1;
+		for (int i = 1; i < inputArr.length; i++) {
+			if (inputArr[i] == inputArr[i-1]) {
 				tempCount++;
-			}
-			else {
 				if (tempCount > longCount) {
 					longNum = tempNum;
 					longCount = tempCount;
 				}
+			}
+			else {
 				tempNum = inputArr[i];
 				tempCount = 1;
 			}
-		}
-		//check the last value - can't think of a better way at the moment
-		if (tempCount > longCount) {
-			longNum = tempNum;
-			longCount = tempCount;
-		}
-		
+		}		
 		//Result print
 		System.out.println("the longest series of identical consecutive elements are : ");
 		for (int i = 0; i < longCount; i++) {

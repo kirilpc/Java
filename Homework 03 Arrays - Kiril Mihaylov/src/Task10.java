@@ -26,6 +26,5 @@ public class Task10 {
 		}
 		System.out.println("The average is " + average);
 		System.out.println("The closest number is " + mainArr[minIndex]);
-		//Could not find a way without Math.abs
 	}
 }
