@@ -22,11 +22,16 @@ public class MineSweeper {
 		}
 		System.out.print("Please enter the number of mines: ");
 		int mines = sc.nextInt();
-		while (mines < 1) {
-			System.out.println("You need at least one mine.");
+		while (mines < 1 || mines > numberOfRows*numberOfColumns ) {
+			System.out.println("The number of mines must be between 1 and " + numberOfRows*numberOfColumns +".");
 			System.out.print("Please enter the number of mines: ");
 			mines = sc.nextInt();
 		}
+		if (mines <= (double)numberOfRows*numberOfColumns*0.15) System.out.println("Easy.");
+		else if (mines <= (double)numberOfRows*numberOfColumns*0.3) System.out.println("Normal.");
+		else if (mines <= (double)numberOfRows*numberOfColumns*0.5) System.out.println("Hard.");
+		else System.out.println("Fine. It's your funeral.");
+		
 		char[][] fuild = new char[numberOfRows + 2][numberOfColumns + 2];//2 for borders 
 		for (int rows = 0; rows < fuild.length; rows++) {
 			for (int cols = 0; cols < fuild[rows].length; cols++) {
@@ -99,7 +104,7 @@ public class MineSweeper {
 				}
 		//The main loop
 		do {
-			//Cordinates input
+			//Coordinates input
 			System.out.print("ROW (1.." + numberOfRows + "): ");
 			inputRow = sc.nextInt();
 			while (inputRow < 1 || inputRow > numberOfRows) {
@@ -118,14 +123,16 @@ public class MineSweeper {
 			for (int rows = 0; rows < gameFuild.length; rows++) {
 				for (int cols = 0; cols < gameFuild[rows].length; cols++) {
 					gameFuild[inputRow][inputCol] = fuild[inputRow][inputCol];
+					//mine check
+					if (gameFuild[inputRow][inputCol] == '*') {
+						alive = false;
+						break;
+					}
 					//frame
 					if ((rows == 0 || rows == gameFuild.length - 1) || (cols == 0 || cols == gameFuild[1].length - 1)) {
 						gameFuild[rows][cols] = '#';
 					}
-					//mine check
-					if (gameFuild[inputRow][inputCol] == '*') {
-						alive = false;
-					}
+					
 					if (gameFuild[inputRow][inputCol] == '-') {
 						if (fuild[inputRow-1][inputCol-1] == '-') gameFuild[inputRow-1][inputCol-1] = '-';
 						if (fuild[inputRow-1][inputCol] == '-') gameFuild[inputRow-1][inputCol] = '-';
@@ -141,8 +148,10 @@ public class MineSweeper {
 					}
 					System.out.print(gameFuild[rows][cols]);
 				}
+				if (alive) {
 				System.out.print(sideNum + rows);
 				System.out.println();
+				}
 			}	
 			safeFields = emptyFields - mines;
 			//Win condition.
@@ -172,6 +181,14 @@ public class MineSweeper {
 			System.out.println("  \\_/\\___/ \\__,_|  \\/  \\/ \\___/\\_| \\_(_)");
 		}
 		else {
+			//full field print
+			for (int rows = 0; rows < fuild.length; rows++) {
+				for (int cols = 0; cols < fuild[rows].length; cols++) {
+					System.out.print(fuild[rows][cols]);
+				}
+				System.out.print(sideNum + rows);
+				System.out.println();
+			}
 			System.out.println("BOOM GOES THE MINE! ");
 			System.out.println("GAME OVER");
 			System.out.println("Better luck next time.");
