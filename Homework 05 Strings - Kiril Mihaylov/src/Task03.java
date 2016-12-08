@@ -33,8 +33,8 @@ public class Task03 {
 		else {
 			System.out.println("Different elements: first string - second string: ");
 			for (int i = 0; i < longestStr; i++) {
-				if (firstArr.length-1 < i && secondArr.length-1 < i && firstArr[i] == secondArr[i]) {
-					continue;
+				if ((firstArr.length-1 > i && secondArr.length-1 > i ) && firstArr[i] == secondArr[i]) {
+						continue;		
 				}
 				else {
 					System.out.print("Index " + i + ": ");

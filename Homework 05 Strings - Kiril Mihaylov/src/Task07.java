@@ -5,8 +5,14 @@ public class Task07 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		//Input
-		System.out.println("Please enter a few words: ");
-		String[] wordsArr = sc.nextLine().split(" ");
+		System.out.println("Please enter a few words separated by space: ");
+		String input = sc.nextLine();
+		while (input.contains(",") || input.contains(".")) { //needs more input checks
+			System.out.println("Invalid word separator.");
+			System.out.println("Please enter a few words separated by space: ");
+			input = sc.nextLine();
+		}
+		String[] wordsArr = input.split(" ");
 		//Longest word search
 		System.out.println("The number of words is: " + wordsArr.length);
 		int longestWord = 0;

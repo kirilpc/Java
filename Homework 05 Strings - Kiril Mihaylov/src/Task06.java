@@ -8,7 +8,7 @@ public class Task06 {
 		System.out.println("Please enter a sentence: ");
 		String input = sc.nextLine();
 		String resultStr = "";
-		//Result string generation
+		//Result string generation. Thank you stacks. 
 		for (int i = 0; i < input.length(); i++) {
 	        if (input.charAt(i) == ' ') {
 	            resultStr = resultStr.substring(0, i + 1) + input.substring(i + 1, i + 2).toUpperCase() + input.substring(i + 2);
@@ -17,6 +17,6 @@ public class Task06 {
 	            resultStr = input.substring(0, 1).toUpperCase() + input.substring(1);
 	        }
 	    }
-	    System.out.println("Result: " + resultStr); //
+	    System.out.println("Result: " + resultStr);
 	}
 }

@@ -31,20 +31,24 @@ public class Task05 {
 		}
 		//Result
 		if (hasSameChar) {
+			char[][] matrix = new char[secondArr.length][firstArr.length];
+			//The first String is responsible for the number of columns
+			//The second String is responsible for the number of rows
 			System.out.println("Result:");
 			for (int rows = 0; rows < secondArr.length; rows++) {
 				for (int cols = 0; cols < firstArr.length; cols++) {
 					if ((cols < sameCharArr1 || cols > sameCharArr1 ) && rows != sameCharArr2) {
-						System.out.print("-");
+						matrix[rows][cols] = '-';
 					}
 					else if (cols == sameCharArr1 ) {
-						System.out.print(secondArr[rows]);
+						matrix[rows][cols] = secondArr[rows];
 					}
-					if (rows == sameCharArr2 && cols != sameCharArr1) {
-						System.out.print(firstArr[cols]);
+					else if (rows == sameCharArr2) {
+						matrix[rows][cols] = firstArr[cols];
 					}
+					System.out.print(matrix[rows][cols]);
 				}
-				System.out.println(); //Why it works.... MAGIC (no idea). Proba gre6ka malko se poly4i v taq zada4a.
+				System.out.println();
 			}
 		}
 		else {
